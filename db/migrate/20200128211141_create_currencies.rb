@@ -1,7 +1,7 @@
 class CreateCurrencies < ActiveRecord::Migration[6.0]
     def change
       create_table :currencies do |t|
-        
+
         t.integer :coin_id
         t.string :website 
         t.string :technical_doc
@@ -31,6 +31,6 @@ class CreateCurrencies < ActiveRecord::Migration[6.0]
   
         t.timestamps
       end
-    end
-#   end 
+    end 
+end
 

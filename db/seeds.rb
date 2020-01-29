@@ -8,19 +8,19 @@
 # require_relative 'postman_response.rb' 
 
 require 'rest-client'
-coincap = ENV["COIN_MARKET_CAP_API_KEY"] 
-API_KEY = Rails.application.credentials.API_KEY
-API_KEY_TWO = Rails.application.credentials.API_KEY_TWO 
 
 Currency.destroy_all 
 User.destroy_all 
 
-number_of_coins_desired = 100
+def make_currency_entries
+    api_key = Rails.application.credentials.API_KEY
+    # API_KEY_TWO = Rails.application.credentials.API_KEY_TWO 
+# number_of_coins_desired = 100
 requests_in_minute_counter = 0
 
-1..number_of_coins_desired do |counter|
-    url_first = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=#{counter}"
-    headers_first = {"X-CMC_PRO_API_KEY" => API_KEY }  
+(1..100).each do |counter|
+    url_first = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=#{counter.to_s}"
+    headers_first = {"X-CMC_PRO_API_KEY" => api_key }  
     if requests_in_minute_counter >= 29
         sleep(60)
         requests_in_minute_counter = 0
@@ -51,7 +51,7 @@ requests_in_minute_counter = 0
 
         Currency.all.each do |coin|
             url_second = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=20'
-            headers = {"X-CMC_PRO_API_KEY" => API_KEY } 
+            headers = {"X-CMC_PRO_API_KEY" => api_key } 
             if requests_in_minute_counter >= 29
                 sleep(60)
                 requests_in_minute_counter = 0
@@ -75,3 +75,6 @@ requests_in_minute_counter = 0
 
 end
 
+end
+
+make_currency_entries
