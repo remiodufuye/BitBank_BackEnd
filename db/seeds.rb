@@ -9,29 +9,36 @@
 
 require 'rest-client'
 coincap = ENV["COIN_MARKET_CAP_API_KEY"] 
+API_KEY = Rails.application.credentials.API_KEY
 
 Currency.destroy_all 
 User.destroy_all 
 
-["1", "2", "3", "4", "5", "6","7","8"].each do |counter|
-    url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=#{counter}"
-    headers = {"X-CMC_PRO_API_KEY" => coincap}  
-    currencies = RestClient.get(url, headers) 
-    currency_hash = JSON.parse(currencies)["data"]
-    byebug
-    currency_hash.each do |coin|  
+["1", "2", "3", "4", "5", "6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"].each do |counter|
+    url_first = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=#{counter}"
+    headers_first = {"X-CMC_PRO_API_KEY" => API_KEY }  
+    currencies_first = RestClient.get(url_first,headers_first) 
+    currency_first_hash = JSON.parse(currencies_first)["data"]
+    currency_first_hash.each do |coin|  
         Currency.create(
-            logo:coin["logo"],   
-            currency_id: counter,
-            name:coin["name"],  
-            symbol:coin["symbol"],
-            slug:coin["slug"],
-            description:coin["description"]   
+            currency_id: counter.to_i,
+            website:coin[1]["urls"]["website"] ,  
+            technical_doc:coin[1]["urls"]["technical_doc"],
+            twitter:coin[1]["urls"]["twitter"],
+            reddit:coin[1]["urls"]["reddit"],
+            message_board: coin[1]["urls"]["message_board"],
+            coin_market_cap_explorer: coin[1]["urls"]["explorer"][0],
+            blockchain_info_explorer: coin[1]["urls"]["explorer"][1],
+            source_code:coin[1]["urls"]["source_code"],
+            logo: coin[1]["logo"],
+            name:coin[1]["name"],
+            symbol:coin[1]["symbol"],
+            slug: coin[1]["slug"],
+            description:coin[1]["description"],
+            category:coin[1]["category"]   
         )  
     end 
-
 end
-
 
 
 will = User.create(username: "wdrougas", profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Will.jpg')

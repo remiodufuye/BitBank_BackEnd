@@ -16,12 +16,21 @@ ActiveRecord::Schema.define(version: 2020_01_28_223556) do
   enable_extension "plpgsql"
 
   create_table "currencies", force: :cascade do |t|
-    t.string "logo"
     t.integer "currency_id"
+    t.string "website"
+    t.string "technical_doc"
+    t.string "twitter"
+    t.string "reddit"
+    t.string "message_board"
+    t.string "coin_market_cap_explorer"
+    t.string "blockchain_info_explorer"
+    t.string "source_code"
+    t.string "logo"
     t.string "name"
     t.string "symbol"
     t.string "slug"
     t.string "description"
+    t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
