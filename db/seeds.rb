@@ -15,7 +15,7 @@ User.destroy_all
 
 ["1", "2", "3", "4", "5", "6","7","8"].each do |counter|
     url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=#{counter}"
-    headers = {"X-CMC_PRO_API_KEY" => "7a2345b3-7f93-4810-8fa1-ad9a09ad6376"}  
+    headers = {"X-CMC_PRO_API_KEY" => coincap}  
     currencies = RestClient.get(url, headers) 
     currency_hash = JSON.parse(currencies)["data"]
     byebug
