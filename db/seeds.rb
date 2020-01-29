@@ -10,10 +10,10 @@
 require 'rest-client'
 coincap = ENV["COIN_MARKET_CAP_API_KEY"] 
 API_KEY = Rails.application.credentials.API_KEY
+API_KEY_TWO = Rails.application.credentials.API_KEY_TWO
 
 Currency.destroy_all 
 User.destroy_all 
-
 
 
 
@@ -46,23 +46,20 @@ User.destroy_all
 
         Currency.all.each do |coin|
             url_second = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=1'
-            headers = {"X-CMC_PRO_API_KEY" => API_KEY } 
+            headers = {"X-CMC_PRO_API_KEY" => API_KEY_TWO } 
             currencies_second = RestClient.get(url_second,headers) 
-            currencies_second_hash = JSON.parse(currencies_second)["data"]
-            debugger
-            coin.update(coin.id, 
-                max_supply: coin["max_supply"],
-                circulating_supply: coin["circulating_supply"],
-                total_supply: coin["total_supply"],
-                price: coin["quote"]["USD"]["price"],
-                volume: coin["quote"]["USD"]["volume_24h"],
-                percentage_change_1h:coin["quote"]["USD"]["percent_change_1h"],
-                percentage_change_24h:coin["quote"]["USD"]["percent_change_24h"],
-                percentage_change_7d:coin["quote"]["USD"]["percent_change_7d"],
-                market_cap:coin["quote"]["USD"]["market_cap"]
+            currencies_second_hash = JSON.parse(currencies_second)["data"].first
+            coin.update( 
+                max_supply: currencies_second_hash["max_supply"],
+                circulating_supply: currencies_second_hash["circulating_supply"],
+                total_supply: currencies_second_hash["total_supply"],
+                price: currencies_second_hash["quote"]["USD"]["price"],
+                volume: currencies_second_hash["quote"]["USD"]["volume_24h"],
+                percentage_change_1h:currencies_second_hash["quote"]["USD"]["percent_change_1h"],
+                percentage_change_24h:currencies_second_hash["quote"]["USD"]["percent_change_24h"],
+                percentage_change_7d:currencies_second_hash["quote"]["USD"]["percent_change_7d"],
+                market_cap:currencies_second_hash["quote"]["USD"]["market_cap"]
             ) 
-
-            # Person.update(15, :user_name => 'Samuel', :group => 'expert')
         end 
 
 
