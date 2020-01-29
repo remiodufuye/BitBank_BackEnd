@@ -14,14 +14,19 @@ API_KEY = Rails.application.credentials.API_KEY
 Currency.destroy_all 
 User.destroy_all 
 
+
+
+
 ["1", "2", "3", "4", "5", "6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"].each do |counter|
+
     url_first = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=#{counter}"
     headers_first = {"X-CMC_PRO_API_KEY" => API_KEY }  
     currencies_first = RestClient.get(url_first,headers_first) 
     currency_first_hash = JSON.parse(currencies_first)["data"]
+
     currency_first_hash.each do |coin|  
         Currency.create(
-            currency_id: counter.to_i,
+            coin_id: coin[0],
             website:coin[1]["urls"]["website"] ,  
             technical_doc:coin[1]["urls"]["technical_doc"],
             twitter:coin[1]["urls"]["twitter"],
@@ -38,7 +43,35 @@ User.destroy_all
             category:coin[1]["category"]   
         )  
     end 
+
+        Currency.all.each do |coin|
+            url_second = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=1'
+            headers = {"X-CMC_PRO_API_KEY" => API_KEY } 
+            currencies_second = RestClient.get(url_second,headers) 
+            currencies_second_hash = JSON.parse(currencies_second)["data"]
+            debugger
+            coin.update(coin.id, 
+                max_supply: coin["max_supply"],
+                circulating_supply: coin["circulating_supply"],
+                total_supply: coin["total_supply"],
+                price: coin["quote"]["USD"]["price"],
+                volume: coin["quote"]["USD"]["volume_24h"],
+                percentage_change_1h:coin["quote"]["USD"]["percent_change_1h"],
+                percentage_change_24h:coin["quote"]["USD"]["percent_change_24h"],
+                percentage_change_7d:coin["quote"]["USD"]["percent_change_7d"],
+                market_cap:coin["quote"]["USD"]["market_cap"]
+            ) 
+
+            # Person.update(15, :user_name => 'Samuel', :group => 'expert')
+        end 
+
+
 end
+
+
+
+
+
 
 
 will = User.create(username: "wdrougas", profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Will.jpg')

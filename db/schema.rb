@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_01_28_223556) do
   enable_extension "plpgsql"
 
   create_table "currencies", force: :cascade do |t|
-    t.integer "currency_id"
+    t.integer "coin_id"
     t.string "website"
     t.string "technical_doc"
     t.string "twitter"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 2020_01_28_223556) do
     t.string "slug"
     t.string "description"
     t.string "category"
+    t.integer "max_supply"
+    t.integer "circulating_supply"
+    t.integer "total_supply"
+    t.float "price"
+    t.float "volume"
+    t.float "percentage_change_1h"
+    t.float "percentage_change_24h"
+    t.float "percentage_change_7d"
+    t.float "market_cap"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
