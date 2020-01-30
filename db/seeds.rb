@@ -1,21 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-# require_relative 'postman_response.rb' 
-
 require 'rest-client'
 
-Currency.destroy_all 
-User.destroy_all 
+# Currency.destroy_all 
+# User.destroy_all 
 
 def make_currency_entries
-    api_key = Rails.application.credentials.API_KEY
-    # API_KEY_TWO = Rails.application.credentials.API_KEY_TWO 
-# number_of_coins_desired = 100
+    api_key = Rails.application.credentials.API_KEY_TWO
+number_of_coins_desired = 100
 requests_in_minute_counter = 0
 
 (1..100).each do |counter|
@@ -48,33 +38,34 @@ requests_in_minute_counter = 0
             category:coin[1]["category"]   
         )
     end 
-
-        Currency.all.each do |coin|
-            url_second = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=20'
-            headers = {"X-CMC_PRO_API_KEY" => api_key } 
-            if requests_in_minute_counter >= 29
-                sleep(60)
-                requests_in_minute_counter = 0
-            end     
-            currencies_second = RestClient.get(url_second,headers) 
-            requests_in_minute_counter += 1
-            currencies_second_hash = JSON.parse(currencies_second)["data"].first
-            coin.update( 
-                max_supply: currencies_second_hash["max_supply"],
-                circulating_supply: currencies_second_hash["circulating_supply"],
-                total_supply: currencies_second_hash["total_supply"],
-                price: currencies_second_hash["quote"]["USD"]["price"],
-                volume: currencies_second_hash["quote"]["USD"]["volume_24h"],
-                percentage_change_1h:currencies_second_hash["quote"]["USD"]["percent_change_1h"],
-                percentage_change_24h:currencies_second_hash["quote"]["USD"]["percent_change_24h"],
-                percentage_change_7d:currencies_second_hash["quote"]["USD"]["percent_change_7d"],
-                market_cap:currencies_second_hash["quote"]["USD"]["market_cap"]
-            ) 
-        end 
-
-
+end
 end
 
+def update_currency_entries
+
+    url_second = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=200'
+    headers = {"X-CMC_PRO_API_KEY" => api_key }    
+    currencies_second = RestClient.get(url_second,headers) 
+    requests_in_minute_counter += 1
+    currencies_second_array = JSON.parse(currencies_second)["data"]
+    currencies_second_array.each do |coin|
+        coin_match = Currency.find_by(coin_id: coin.id)       
+        
+        if coin_match
+            coin_match.update( 
+                max_supply: coin["max_supply"],
+                circulating_supply: coin["circulating_supply"],
+                total_supply: coin["total_supply"],
+                price: coin["quote"]["USD"]["price"],
+                volume: coin["quote"]["USD"]["volume_24h"],
+                percentage_change_1h:coin["quote"]["USD"]["percent_change_1h"],
+                percentage_change_24h:coin["quote"]["USD"]["percent_change_24h"],
+                percentage_change_7d:coin["quote"]["USD"]["percent_change_7d"],
+                market_cap:coin["quote"]["USD"]["market_cap"]
+            ) 
+        end
+    end
 end
 
 make_currency_entries
+# update_currency_entries
