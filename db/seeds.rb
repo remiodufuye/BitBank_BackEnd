@@ -1,6 +1,5 @@
 require 'rest-client'
 
-# Currency.destroy_all 
 
 # use either API_KEY or API_KEY_TWO
 
