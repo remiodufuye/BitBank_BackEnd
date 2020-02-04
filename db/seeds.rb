@@ -148,3 +148,20 @@ update_currency_entries
 # remi = User.create(username: "rremi" , profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Remi.jpg')
 # sebastian = User.create(username: "ssebastian", profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Sebastian.jpg')
 # young = User.create(username: "yhan", profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Young.jpg')
+
+# User.destroy_all 
+
+# will = User.create(username: "wdrougas")
+# jose = User.create(username: "jromero")
+# trevor = User.create(username: "tjameson")
+# chine = User.create(username: "canikwe")
+# sara = User.create(username: "ssmith")
+# kyle = User.create(username: "cakehole")
+# jasur = User.create(username: "jabdullin")
+# matt = User.create(username: "mbechtel")
+# rob = User.create(username: "rheavner")
+# ryan = User.create(username: "rsmith")
+# remi = User.create(username: "rremi")
+# sebastian = User.create(username: "ssebastian")
+# young = User.create(username: "yhan") 
+
