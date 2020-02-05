@@ -43,31 +43,31 @@ require 'rest-client'
 # make_currency_entries
 
 
-def update_currency_entries
-    api_key = Rails.application.credentials.API_KEY
-    url_second = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=5000'
-    headers = {"X-CMC_PRO_API_KEY" => api_key }    
-    currencies_second = RestClient.get(url_second,headers) 
-    currencies_second_array = JSON.parse(currencies_second)["data"]
-    currencies_second_array.each do |coin|
-    coin_match = Currency.find_by(coin_id: coin["id"])     
-        if coin_match
-            coin_match.update( 
-                max_supply: coin["max_supply"],
-                circulating_supply: coin["circulating_supply"],
-                total_supply: coin["total_supply"],
-                price: coin["quote"]["USD"]["price"],
-                volume: coin["quote"]["USD"]["volume_24h"],
-                percentage_change_1h:coin["quote"]["USD"]["percent_change_1h"],
-                percentage_change_24h:coin["quote"]["USD"]["percent_change_24h"],
-                percentage_change_7d:coin["quote"]["USD"]["percent_change_7d"],
-                market_cap:coin["quote"]["USD"]["market_cap"]
-            ) 
-        end
-    end
-end
+# def update_currency_entries
+#     api_key = Rails.application.credentials.API_KEY
+#     url_second = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=5000'
+#     headers = {"X-CMC_PRO_API_KEY" => api_key }    
+#     currencies_second = RestClient.get(url_second,headers) 
+#     currencies_second_array = JSON.parse(currencies_second)["data"]
+#     currencies_second_array.each do |coin|
+#     coin_match = Currency.find_by(coin_id: coin["id"])     
+#         if coin_match
+#             coin_match.update( 
+#                 max_supply: coin["max_supply"],
+#                 circulating_supply: coin["circulating_supply"],
+#                 total_supply: coin["total_supply"],
+#                 price: coin["quote"]["USD"]["price"],
+#                 volume: coin["quote"]["USD"]["volume_24h"],
+#                 percentage_change_1h:coin["quote"]["USD"]["percent_change_1h"],
+#                 percentage_change_24h:coin["quote"]["USD"]["percent_change_24h"],
+#                 percentage_change_7d:coin["quote"]["USD"]["percent_change_7d"],
+#                 market_cap:coin["quote"]["USD"]["market_cap"]
+#             ) 
+#         end
+#     end
+# end
 
-update_currency_entries
+# update_currency_entries
 
 
 # to get specific Crypto , in this case Ethereum = 1027 
@@ -133,21 +133,34 @@ update_currency_entries
 # update_single_crypto
 
 
-# User.destroy_all 
+User.destroy_all 
 
-# will = User.create(username: "wdrougas", profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Will.jpg')
-# jose = User.create(username: "jromero" , profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Jose.jpg')
-# trevor = User.create(username: "tjameson" , profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Trevor.jpg')
-# chine = User.create(username: "canikwe" , profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Chine.jpg')
-# sara = User.create(username: "ssmith" , profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Sara.jpg')
-# kyle = User.create(username: "cakehole" , profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Kyle.jpg')
-# jasur = User.create(username: "jabdullin" , profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Jasur.jpg')
-# matt = User.create(username: "mbechtel" , profile_photo: 'https://mandiokateam.com/sports-buddy/profile/MattB.jpg')
-# rob = User.create(username: "rheavner" , profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Matt.jpg')
-# ryan = User.create(username: "rsmith" , profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Ryan.jpg')
-# remi = User.create(username: "rremi" , profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Remi.jpg')
-# sebastian = User.create(username: "ssebastian", profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Sebastian.jpg')
-# young = User.create(username: "yhan", profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Young.jpg')
+will = User.create(username: "wdrougas", password: "password",
+profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Will.jpg')
+jose = User.create(username: "jromero" , password: "password",
+profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Jose.jpg')
+trevor = User.create(username: "tjameson" , password: "password",
+profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Trevor.jpg')
+chine = User.create(username: "canikwe" , password: "password",
+profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Chine.jpg')
+sara = User.create(username: "ssmith" , password: "password",
+profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Sara.jpg')
+kyle = User.create(username: "cakehole" , password: "password",
+profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Kyle.jpg')
+jasur = User.create(username: "jabdullin" , password: "password",
+profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Jasur.jpg')
+matt = User.create(username: "mbechtel" , password: "password",
+profile_photo: 'https://mandiokateam.com/sports-buddy/profile/MattB.jpg')
+rob = User.create(username: "rheavner" , password: "password",
+profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Matt.jpg')
+ryan = User.create(username: "rsmith" , password: "password",
+profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Ryan.jpg')
+remi = User.create(username: "rremi" , password: "password",
+profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Remi.jpg')
+sebastian = User.create(username: "ssebastian", password: "password",
+profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Sebastian.jpg')
+young = User.create(username: "yhan", password: "password",
+profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Young.jpg')
 
 # User.destroy_all 
 
