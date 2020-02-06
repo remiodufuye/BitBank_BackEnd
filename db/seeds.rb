@@ -78,7 +78,7 @@ require 'rest-client'
 
 def create_single_crypto 
 api_key = Rails.application.credentials.API_KEY_TWO
-url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?symbol=MKR"
+url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?symbol=USDT"
 headers = {"X-CMC_PRO_API_KEY" => api_key }  
 currencies = RestClient.get(url,headers) 
 currency_hash = JSON.parse(currencies)["data"]
