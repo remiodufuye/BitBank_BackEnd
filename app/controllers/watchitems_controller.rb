@@ -9,7 +9,7 @@ class WatchitemsController < ApplicationController
     def create 
         
         coin = Currency.find_by(coin_id: params[:currency_id])
-        watchitem = Watchitem.create(user_id:params[:user_id] , currency_id: coin.id)   
+        watchitem = Watchitem.create(user_id:params[:user_id] , currency_id: coin.id)
         
         # coin = Currency.find_by(coin_id: 5)
         # watchitem = Watchitem.create(user_id:37 , currency_id: coin.id) 
@@ -30,8 +30,9 @@ class WatchitemsController < ApplicationController
     end 
 
     def serialized_data
-        {:except => [:created_at , :updated_at]}
+        {:except => [:created_at , :updated_at], :include => [currency: {:only => [:coin_id] }]}
     end 
+
 
 
 end
