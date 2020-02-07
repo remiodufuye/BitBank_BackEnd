@@ -179,4 +179,4 @@ require 'rest-client'
 # young = User.create(username: "yhan") 
 
 
-Watchlist.destroy_all ; 
+# Watchitem.destroy_all ; 
