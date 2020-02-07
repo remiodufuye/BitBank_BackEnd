@@ -14,7 +14,6 @@ class WatchitemsController < ApplicationController
         watchitem = Watchitem.create(strong_params)
         
         if watchitem.valid? 
-        debugger
         render json: {message: "Coin added to watchlist!", watchitem: watchitem.to_json(serialized_data)}
          else 
         render json: {message: "Coin already added to watchlist"}
