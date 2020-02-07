@@ -7,22 +7,24 @@ class WatchitemsController < ApplicationController
 
 
     def create 
-        # currency = Currency.find_by(coin_id: 5)
-        # currency = Currency.find_by(params[:coin_id])
-        # Watchitem.create(user_id:params[:id] , currency_id: currency)   -- from lbs 
-
-        watchitem = Watchitem.create(strong_params)
         
+        coin = Currency.find_by(coin_id: params[:currency_id])
+        watchitem = Watchitem.create(user_id:params[:user_id] , currency_id: coin.id)   
+        
+        # coin = Currency.find_by(coin_id: 5)
+        # watchitem = Watchitem.create(user_id:37 , currency_id: coin.id) 
+        # watchitem = Watchitem.create(strong_params)  
+
         if watchitem.valid? 
-        render json: {message: "Coin added to watchlist!", watchitem: watchitem.to_json(serialized_data)}
-         else 
-        render json: {message: "Coin already added to watchlist"}
-         end
+            render json: {message: "Coin added to watchlist!", watchitem: watchitem.to_json(serialized_data)}
+        else 
+            render json: {message: "Coin already added to watchlist"}
+        end
     end  
-
-
+    
+    
     private 
-
+    
     def strong_params
         params.require(:watchitem).permit(:user_id , :currency_id)
     end 
@@ -31,10 +33,6 @@ class WatchitemsController < ApplicationController
         {:except => [:created_at , :updated_at]}
     end 
 
-
-    # name = Faker::Name.first_name
-    # species = Faker::Games::Pokemon.name
-    # Pokemon.create(nickname: name, species: species, trainer_id: trainer.id)
 
 end
 
