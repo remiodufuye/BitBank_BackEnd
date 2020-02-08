@@ -189,14 +189,14 @@ Watchitem.destroy_all ;
 # name Litecoin: "https://www.youtube.com/embed/TqUgbgq2FME"  
 
 def update_single_youtube
-    coin_match = Currency.find_by(name:"Ethereum" )   
+    coin_match = Currency.find_by(name:"Litecoin" )   
         if coin_match
             coin_match.update( 
-                youtube_url:"https://www.youtube.com/embed/TDGq4aeevgY"
+                youtube_url:"https://www.youtube.com/embed/TqUgbgq2FME"
             ) 
         end
 end
-
+ 
 
 update_single_youtube  
   
