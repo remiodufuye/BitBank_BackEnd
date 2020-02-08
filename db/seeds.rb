@@ -182,3 +182,23 @@ require 'rest-client'
 Watchitem.destroy_all ; 
 
 # Currency.update_all youtube_url:'https://www.youtube.com/embed/Pl8OlkkwRpc' 
+
+
+# name Bitcoin : "https://www.youtube.com/embed/c9OGZLzqN0Q" 
+# symbol Ethereum: "https://www.youtube.com/embed/TDGq4aeevgY"  
+
+def update_single_youtube
+    coin_match = Currency.find_by(symbol:"ETH" )   
+        if coin_match
+            coin_match.update( 
+                youtube_url:"https://www.youtube.com/embed/TDGq4aeevgY"
+            ) 
+        end
+end
+
+
+update_single_youtube  
+ 
+
+
+
