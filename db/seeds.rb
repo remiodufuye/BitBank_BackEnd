@@ -185,10 +185,11 @@ Watchitem.destroy_all ;
 
 
 # name Bitcoin : "https://www.youtube.com/embed/c9OGZLzqN0Q" 
-# symbol Ethereum: "https://www.youtube.com/embed/TDGq4aeevgY"  
+# name Ethereum: "https://www.youtube.com/embed/TDGq4aeevgY"  
+# name Litecoin: "https://www.youtube.com/embed/TqUgbgq2FME"  
 
 def update_single_youtube
-    coin_match = Currency.find_by(symbol:"ETH" )   
+    coin_match = Currency.find_by(name:"Ethereum" )   
         if coin_match
             coin_match.update( 
                 youtube_url:"https://www.youtube.com/embed/TDGq4aeevgY"
@@ -198,7 +199,7 @@ end
 
 
 update_single_youtube  
- 
+  
 
 
 
