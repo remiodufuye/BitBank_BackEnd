@@ -25,8 +25,12 @@ class WatchitemsController < ApplicationController
         params.require(:watchitem).permit(:user_id , :currency_id)
     end 
 
+    # def serialized_data
+    #     {:except => [:created_at , :updated_at], :include => [currency: {:only => [:coin_id] }]}
+    # end  
+
     def serialized_data
-        {:except => [:created_at , :updated_at], :include => [currency: {:only => [:coin_id] }]}
+        {:except => [:created_at , :updated_at], :include => [currency: {:except => [:created_at , :updated_at] }]}
     end 
 
 
