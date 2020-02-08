@@ -186,13 +186,15 @@ Watchitem.destroy_all ;
 
 # name Bitcoin : "https://www.youtube.com/embed/c9OGZLzqN0Q" 
 # name Ethereum: "https://www.youtube.com/embed/TDGq4aeevgY"  
-# name Litecoin: "https://www.youtube.com/embed/TqUgbgq2FME"  
+# name Litecoin: "https://www.youtube.com/embed/TqUgbgq2FME" 
+# name Dogecoin:"https://www.youtube.com/embed/_KVZmS_UO5I"
+# name Stellar  : "https://www.youtube.com/embed/pMBLUCxzTUM" 
 
 def update_single_youtube
-    coin_match = Currency.find_by(name:"Litecoin" )   
+    coin_match = Currency.find_by(name:'Stellar' )   
         if coin_match
             coin_match.update( 
-                youtube_url:"https://www.youtube.com/embed/TqUgbgq2FME"
+                youtube_url:"https://www.youtube.com/embed/pMBLUCxzTUM"
             ) 
         end
 end
