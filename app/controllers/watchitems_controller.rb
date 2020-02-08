@@ -18,6 +18,13 @@ class WatchitemsController < ApplicationController
         end
     end  
     
+
+    def destroy
+        watchitem = Watchitem.find(params[:id])
+        watchitem.delete
+        render json: watchitem.to_json(serialized_data)
+    end
+
     
     private 
     
@@ -25,9 +32,6 @@ class WatchitemsController < ApplicationController
         params.require(:watchitem).permit(:user_id , :currency_id)
     end 
 
-    # def serialized_data
-    #     {:except => [:created_at , :updated_at], :include => [currency: {:only => [:coin_id] }]}
-    # end  
 
     def serialized_data
         {:except => [:created_at , :updated_at], :include => [currency: {:except => [:created_at , :updated_at] }]}
