@@ -179,7 +179,7 @@ require 'rest-client'
 # young = User.create(username: "yhan") 
 
 
-Watchitem.destroy_all ; 
+Watchitem.destroy_all ;  
 
 # Currency.update_all youtube_url:'https://www.youtube.com/embed/Pl8OlkkwRpc' 
 
@@ -190,17 +190,17 @@ Watchitem.destroy_all ;
 # name Dogecoin:"https://www.youtube.com/embed/_KVZmS_UO5I"
 # name Stellar  : "https://www.youtube.com/embed/pMBLUCxzTUM" 
 
-def update_single_youtube
-    coin_match = Currency.find_by(name:'Stellar' )   
-        if coin_match
-            coin_match.update( 
-                youtube_url:"https://www.youtube.com/embed/pMBLUCxzTUM"
-            ) 
-        end
-end
+# def update_single_youtube
+#     coin_match = Currency.find_by(name:'Stellar' )   
+#         if coin_match
+#             coin_match.update( 
+#                 youtube_url:"https://www.youtube.com/embed/pMBLUCxzTUM"
+#             ) 
+#         end
+# end
  
 
-update_single_youtube  
+# update_single_youtube  
   
 
 
