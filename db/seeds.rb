@@ -162,21 +162,21 @@ require 'rest-client'
 # young = User.create(username: "yhan", password: "password",
 # profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Young.jpg')
 
-# User.destroy_all 
+User.destroy_all 
 
-# will = User.create(username: "wdrougas")
-# jose = User.create(username: "jromero")
-# trevor = User.create(username: "tjameson")
-# chine = User.create(username: "canikwe")
-# sara = User.create(username: "ssmith")
-# kyle = User.create(username: "cakehole")
-# jasur = User.create(username: "jabdullin")
-# matt = User.create(username: "mbechtel")
-# rob = User.create(username: "rheavner")
-# ryan = User.create(username: "rsmith")
-# remi = User.create(username: "rremi")
-# sebastian = User.create(username: "ssebastian")
-# young = User.create(username: "yhan") 
+will = User.create(username: "wdrougas" , password: "password" )
+jose = User.create(username: "jromero", password: "password")
+trevor = User.create(username: "tjameson", password: "password")
+chine = User.create(username: "canikwe", password: "password")
+sara = User.create(username: "ssmith", password: "password")
+kyle = User.create(username: "cakehole", password: "password")
+jasur = User.create(username: "jabdullin", password: "password")
+matt = User.create(username: "mbechtel", password: "password")
+rob = User.create(username: "rheavner", password: "password")
+ryan = User.create(username: "rsmith", password: "password")
+remi = User.create(username: "rremi", password: "password")
+sebastian = User.create(username: "ssebastian", password: "password")
+young = User.create(username: "yhan" , password: "password") 
 
 
 Watchitem.destroy_all ;  
