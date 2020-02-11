@@ -162,24 +162,25 @@ require 'rest-client'
 # young = User.create(username: "yhan", password: "password",
 # profile_photo: 'https://mandiokateam.com/sports-buddy/profile/Young.jpg')
 
-User.destroy_all 
+# User.destroy_all 
 
-will = User.create(username: "wdrougas" , password: "password" )
-jose = User.create(username: "jromero", password: "password")
-trevor = User.create(username: "tjameson", password: "password")
-chine = User.create(username: "canikwe", password: "password")
-sara = User.create(username: "ssmith", password: "password")
-kyle = User.create(username: "cakehole", password: "password")
-jasur = User.create(username: "jabdullin", password: "password")
-matt = User.create(username: "mbechtel", password: "password")
-rob = User.create(username: "rheavner", password: "password")
-ryan = User.create(username: "rsmith", password: "password")
-remi = User.create(username: "rremi", password: "password")
-sebastian = User.create(username: "ssebastian", password: "password")
-young = User.create(username: "yhan" , password: "password") 
+# will = User.create(username: "wdrougas" , password: "password" )
+# jose = User.create(username: "jromero", password: "password")
+# trevor = User.create(username: "tjameson", password: "password")
+# chine = User.create(username: "canikwe", password: "password")
+# sara = User.create(username: "ssmith", password: "password")
+# kyle = User.create(username: "cakehole", password: "password")
+# jasur = User.create(username: "jabdullin", password: "password")
+# matt = User.create(username: "mbechtel", password: "password")
+# rob = User.create(username: "rheavner", password: "password")
+# ryan = User.create(username: "rsmith", password: "password")
+# remi = User.create(username: "rremi", password: "password")
+# sebastian = User.create(username: "ssebastian", password: "password")
+# young = User.create(username: "yhan" , password: "password") 
 
 
-Watchitem.destroy_all ;  
+Watchitem.destroy_all 
+Portfollio.destroy_all 
 
 # Currency.update_all youtube_url:'https://www.youtube.com/embed/Pl8OlkkwRpc' 
 
