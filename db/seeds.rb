@@ -180,7 +180,7 @@ require 'rest-client'
 
 
 Watchitem.destroy_all 
-Portfollio.destroy_all 
+Portfolio.destroy_all 
 
 # Currency.update_all youtube_url:'https://www.youtube.com/embed/Pl8OlkkwRpc' 
 
