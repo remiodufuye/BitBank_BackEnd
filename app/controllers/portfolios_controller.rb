@@ -23,13 +23,13 @@ class PortfoliosController < ApplicationController
 
 
     def update
-     
-        coin = Currency.find_by(coin_id: params[:currency_id]) 
-        # newPortfolioItem = Portfolio.update( amount: params[:amount] , value: params[:value])
-        newPortfolioItem = coin.update( amount: params[:amount] , value: params[:value])
+    
+        user = User.find(params[:user_id]) 
+        portfolio = Portfolio.find_by(user_id: user.id, currency_id: @currency.id) 
+        portfolio.update( amount: params[:amount] , value: params[:value])
 
-        if newPortfolioItem.valid? 
-            render json: {message: "Portfolio Updated!!", portfolio: newPortfolioItem.to_json(serialized_data)}
+        if portfolio.valid?
+            render json: {message: "Portfolio Updated!!", portfolio: portfolio.to_json(serialized_data)}
             else 
             render json: {message: "Something Went Wrong !! "}
             end
@@ -40,7 +40,7 @@ class PortfoliosController < ApplicationController
     private
     
     def get_currency
-        @curency = Currency.find(params[:id])
+        @currency = Currency.find_by(coin_id: params[:currency_id])
     end 
 
     def serialized_data
@@ -53,13 +53,3 @@ class PortfoliosController < ApplicationController
 
 end
 
-
-# def update
-#     @course = @review.course
-#     @review.update(strong_params)
-#     if @review.valid?
-#         redirect_to user_path(@review.user)
-#     else
-#         render :edit
-#     end
-# end
