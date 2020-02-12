@@ -23,7 +23,7 @@ class PortfoliosController < ApplicationController
 
 
     def update
-    
+      
         user = User.find(params[:user_id]) 
         portfolio = Portfolio.find_by(user_id: user.id, currency_id: @currency.id) 
         portfolio.update( amount: params[:amount] , value: params[:value])
