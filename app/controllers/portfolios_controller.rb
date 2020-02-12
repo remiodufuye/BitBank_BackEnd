@@ -21,12 +21,6 @@ class PortfoliosController < ApplicationController
                  
     end 
 
-    # def getamount
-       
-
-
-    # end 
-
 
     def update
     
@@ -41,6 +35,12 @@ class PortfoliosController < ApplicationController
             end
 
     end
+
+    def destroy
+        portfolio = Portfolio.find(params[:id])
+        portfolio.delete
+        render json: portfolio.to_json(serialized_data)
+    end 
 
     
     private
