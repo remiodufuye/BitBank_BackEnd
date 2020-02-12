@@ -21,6 +21,12 @@ class PortfoliosController < ApplicationController
                  
     end 
 
+    # def getamount
+       
+
+
+    # end 
+
 
     def update
     
