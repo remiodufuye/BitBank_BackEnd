@@ -14,3 +14,5 @@ You can find frontend at: https://github.com/remiodufuye/BitBank_FrontEnd
 1. open and run 'bundle install'
 2. run 'rails s -p 3001'
  
+
+ ## To see a full demo, please look at: https://youtu.be/AeLsFaCOjjY
