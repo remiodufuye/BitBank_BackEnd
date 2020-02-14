@@ -1,6 +1,9 @@
 ## BitBank backend
 BitBank is an application built to help people Watch , Buy and Learn More About Crypto Currencies . 
 
+![homePage](https://github.com/remiodufuye/BitBank_FrontEnd/blob/master/src/images/Home_Screen.png)
+
+
 ### This is a repository for BitBank's backend:
  - built with Ruby on Rails coupled with RESTful API and MVC pattern
  - has four models: User, Currency , Portfolio and WatchList
