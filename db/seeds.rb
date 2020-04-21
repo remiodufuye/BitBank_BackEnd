@@ -43,38 +43,38 @@ end
 make_currency_entries
 
 
-def update_currency_entries
-    api_key = Rails.application.credentials.API_KEY
-    url_second = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=5000'
-    headers = {"X-CMC_PRO_API_KEY" => api_key }    
-    currencies_second = RestClient.get(url_second,headers) 
-    currencies_second_array = JSON.parse(currencies_second)["data"]
-    currencies_second_array.each do |coin|
-    coin_match = Currency.find_by(coin_id: coin["id"])     
-        if coin_match
-            coin_match.update( 
-                max_supply: coin["max_supply"],
-                circulating_supply: coin["circulating_supply"],
-                total_supply: coin["total_supply"],
-                price: coin["quote"]["USD"]["price"],
-                volume: coin["quote"]["USD"]["volume_24h"],
-                percentage_change_1h:coin["quote"]["USD"]["percent_change_1h"],
-                percentage_change_24h:coin["quote"]["USD"]["percent_change_24h"],
-                percentage_change_7d:coin["quote"]["USD"]["percent_change_7d"],
-                market_cap:coin["quote"]["USD"]["market_cap"]
-            ) 
-        end
-    end
-end
+# def update_currency_entries
+#     api_key = Rails.application.credentials.API_KEY
+#     url_second = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=5000'
+#     headers = {"X-CMC_PRO_API_KEY" => api_key }    
+#     currencies_second = RestClient.get(url_second,headers) 
+#     currencies_second_array = JSON.parse(currencies_second)["data"]
+#     currencies_second_array.each do |coin|
+#     coin_match = Currency.find_by(coin_id: coin["id"])     
+#         if coin_match
+#             coin_match.update( 
+#                 max_supply: coin["max_supply"],
+#                 circulating_supply: coin["circulating_supply"],
+#                 total_supply: coin["total_supply"],
+#                 price: coin["quote"]["USD"]["price"],
+#                 volume: coin["quote"]["USD"]["volume_24h"],
+#                 percentage_change_1h:coin["quote"]["USD"]["percent_change_1h"],
+#                 percentage_change_24h:coin["quote"]["USD"]["percent_change_24h"],
+#                 percentage_change_7d:coin["quote"]["USD"]["percent_change_7d"],
+#                 market_cap:coin["quote"]["USD"]["market_cap"]
+#             ) 
+#         end
+#     end
+# end
 
-update_currency_entries
+# update_currency_entries
 
 
-to get specific Crypto , in this case Ethereum = 1027 
-https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=1027
+# to get specific Crypto , in this case Ethereum = 1027 
+# https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=1027
 
-OR USE SYMBOL , EXAMPLE BELOW FOR RIPPLE
-https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?symbol=IOTA
+# OR USE SYMBOL , EXAMPLE BELOW FOR RIPPLE
+# https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?symbol=IOTA
 
 def create_single_crypto 
 api_key = Rails.application.credentials.API_KEY_TWO
